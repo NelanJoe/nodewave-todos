@@ -1,12 +1,18 @@
+import Head from "next/head";
 import Image from "next/image";
 
 export default function AuthLayout({
+  title,
   children,
 }: {
+  title: string;
   children: React.ReactNode;
 }) {
   return (
     <>
+      <Head>
+        <title>{`${title} | Nodewave`}</title>
+      </Head>
       <Image
         src="/images/shape.png"
         alt="shape"

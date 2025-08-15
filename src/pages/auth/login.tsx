@@ -47,7 +47,7 @@ export default function Login() {
   };
 
   return (
-    <AuthLayout>
+    <AuthLayout title="Sign In">
       <div className="space-y-6 mb-8">
         <h2 className="text-center text-6xl font-semibold">Sign In</h2>
         <p className="text-sm text-center text-slate-500">

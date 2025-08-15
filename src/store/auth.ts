@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { cookieStorage } from "zustand-cookie-storage";
 import type { User } from "@/types";
 
 type State = {
@@ -7,13 +8,13 @@ type State = {
   accessToken: string;
 };
 
-type Action = {
+type Actions = {
   setAccessToken: (accessToken: string) => void;
   setUser: (user: User) => void;
   clearUser: () => void;
 };
 
-const useAuthStore = create<State & Action>()(
+const useAuthStore = create<State & Actions>()(
   persist(
     (set) => ({
       user: null,
@@ -24,7 +25,11 @@ const useAuthStore = create<State & Action>()(
     }),
     {
       name: "auth",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => cookieStorage),
+      partialize: (state) => ({
+        accessToken: state.accessToken,
+        user: state.user,
+      }),
     }
   )
 );

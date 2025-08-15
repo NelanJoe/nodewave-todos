@@ -6,6 +6,8 @@ type AuthResponse = {
     user: User;
     token: string;
   };
+  message: string;
+  errors: string[];
 };
 
 export const loginUser = async (credentials: {
